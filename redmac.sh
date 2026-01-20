@@ -5,8 +5,6 @@ if [ -t 1 ]; then
   GREEN="$(printf '\033[32m')"
   YELLOW="$(printf '\033[33m')"
   BLUE="$(printf '\033[34m')"
-  PURPLE="$(printf '\033[35m')"
-  CYAN="$(printf '\033[36m')"
   BOLD="$(printf '\033[1m')"
   RESET="$(printf '\033[0m')"
 else
@@ -14,8 +12,6 @@ else
   GREEN=""
   YELLOW=""
   BLUE=""
-  PURPLE=""
-  CYAN=""
   BOLD=""
   RESET=""
 fi
@@ -127,10 +123,6 @@ else
   else
     BIN_DIR="/usr/local/bin"
   fi
-  progress_tick "payload: jaws"
-  progress_tick "payload: linux-exploit-suggester"
-  progress_tick "payload: winpeas.bat"
-  progress_tick "payload: chisel_linux_64"
 fi
 LOG_FILE="$HOME/.redmac-install.log"
 INSTALLED_TOOLS=()
