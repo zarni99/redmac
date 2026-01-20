@@ -2,12 +2,12 @@
 
 **RedMac** is a comprehensive, automated Bash script designed to set up a robust penetration testing and security research environment on macOS. It streamlines the installation of essential CLI tools, GUI applications, Python packages, and specialized payloads, ensuring you have a ready-to-use toolkit in minutes.
 
-## 🚀 Features
+## Features
 - Installs Homebrew if needed and sets up a macOS security toolkit
 - Uses a dedicated Python venv and links tool binaries into your PATH
 - Installs common CLI tools, GUI apps, Python packages, and payloads in one run
 
-## 🛠 Installation
+## Installation
 
 1.  **Clone the repository**:
     ```bash
@@ -25,7 +25,7 @@
     ./redmac.sh
     ```
 
-## 📦 Included Tools
+## Included Tools
 
 ### Brew Formulae (CLI)
 nmap, masscan, hydra, hashcat, john, aircrack-ng, gobuster, sqlmap, nikto, theharvester, amass, ffuf, rustscan, proxychains-ng, tor, nuclei, subfinder, httpx, naabu, exploitdb, feroxbuster, binwalk, socat, sslscan, wget, cmake, openssl@3, tmux, jq, radare2, apktool.
@@ -39,7 +39,7 @@ impacket, dirsearch, wafw00f, arjun, frida-tools, objection, hashid
 ### Standalone Payloads & Scripts
 Chisel, LinPEAS/WinPEAS, LinEnum, Linux Exploit Suggester, LSE, pspy, PowerUp, Nishang reverse shell, PHP reverse shell, PrintSpoofer, TokenBreaker, JWT cracker, Hash Identifier, LinkFinder, plus small helper scripts.
 
-## 📝 Logging
+## Logging
 
 The installation process logs all activities to:
 ```bash
