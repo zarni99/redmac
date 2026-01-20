@@ -117,7 +117,7 @@ PYTOOLS_VENV="$HOME/.pentest-python-tools-venv"
 if command -v brew >/dev/null 2>&1; then
   BIN_DIR="$(brew --prefix)/bin"
 else
-  # Fallback based on architecture if brew command somehow fails but paths exist
+
   if [ -d "/opt/homebrew/bin" ]; then
     BIN_DIR="/opt/homebrew/bin"
   else
@@ -191,8 +191,7 @@ install_pip3_package() {
     fi
   fi
   
-  # Link binaries to BIN_DIR
-  # We link all executables from the venv bin that are not python/pip internals
+
   for bin_file in "$PYTOOLS_VENV/bin"/*; do
     local base_name
     base_name=$(basename "$bin_file")
@@ -201,7 +200,7 @@ install_pip3_package() {
     fi
   done
 
-  # Create aliases for NetExec (cme/crackmapexec -> nxc) if nxc exists
+
   if [ -f "$BIN_DIR/nxc" ]; then
     ln -sf "$BIN_DIR/nxc" "$BIN_DIR/cme"
     ln -sf "$BIN_DIR/nxc" "$BIN_DIR/crackmapexec"
@@ -210,8 +209,7 @@ install_pip3_package() {
 }
 
 install_payloads() {
-  # Chisel
-  # MacOS
+
   if [ ! -f "$BIN_DIR/chisel_server" ]; then
     info "Installing chisel_server..."
     if wget -q "https://github.com/jpillora/chisel/releases/download/v1.7.6/chisel_1.7.6_darwin_amd64.gz" -O "$BIN_DIR/chisel_osx.gz" 2>>"$LOG_FILE"; then
@@ -225,7 +223,7 @@ install_payloads() {
       FAILED_TOOLS+=("chisel_server")
     fi
   fi
-  # Linux 64
+
   if [ ! -f "$BIN_DIR/chisel_linux_64" ]; then
     info "Installing chisel_linux_64..."
     if wget -q "https://github.com/jpillora/chisel/releases/download/v1.7.6/chisel_1.7.6_linux_amd64.gz" -O "$BIN_DIR/chisel_linux_64.gz" 2>>"$LOG_FILE"; then
@@ -238,7 +236,7 @@ install_payloads() {
       FAILED_TOOLS+=("chisel_linux_64")
     fi
   fi
-  # Linux 386
+
   if [ ! -f "$BIN_DIR/chisel_linux_386" ]; then
     info "Installing chisel_linux_386..."
     if wget -q "https://github.com/jpillora/chisel/releases/download/v1.7.6/chisel_1.7.6_linux_386.gz" -O "$BIN_DIR/chisel_linux_386.gz" 2>>"$LOG_FILE"; then
@@ -252,8 +250,7 @@ install_payloads() {
     fi
   fi
 
-  # PEASS-ng
-  # LinPEAS
+
   if [ ! -f "$BIN_DIR/linpeas.sh" ]; then
     info "Installing linpeas..."
     if wget -q "https://github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas.sh" -O "$BIN_DIR/linpeas.sh" 2>>"$LOG_FILE"; then
@@ -264,7 +261,7 @@ install_payloads() {
       FAILED_TOOLS+=("linpeas")
     fi
   fi
-  # WinPEAS bat
+
   if [ ! -f "$BIN_DIR/winpeas.bat" ]; then
     info "Installing winpeas.bat..."
     if wget -q "https://github.com/peass-ng/PEASS-ng/releases/latest/download/winPEAS.bat" -O "$BIN_DIR/winpeas.bat" 2>>"$LOG_FILE"; then
@@ -275,7 +272,7 @@ install_payloads() {
       FAILED_TOOLS+=("winpeas.bat")
     fi
   fi
-  # WinPEAS exe
+
   if [ ! -f "$BIN_DIR/winpeas.exe" ]; then
     info "Installing winpeas.exe..."
     if wget -q "https://github.com/peass-ng/PEASS-ng/releases/latest/download/winPEASany.exe" -O "$BIN_DIR/winpeas.exe" 2>>"$LOG_FILE"; then
@@ -287,7 +284,7 @@ install_payloads() {
     fi
   fi
 
-  # LinEnum
+
   if [ ! -f "$BIN_DIR/linenum.sh" ]; then
     info "Installing linenum..."
     if wget -q "https://raw.githubusercontent.com/rebootuser/LinEnum/master/LinEnum.sh" -O "$BIN_DIR/linenum.sh" 2>>"$LOG_FILE"; then
@@ -299,7 +296,7 @@ install_payloads() {
     fi
   fi
 
-  # Linux Exploit Suggester
+
   if [ ! -f "$BIN_DIR/linux-exploit-suggester.sh" ]; then
     info "Installing linux-exploit-suggester..."
     if wget -q "https://raw.githubusercontent.com/mzet-/linux-exploit-suggester/master/linux-exploit-suggester.sh" -O "$BIN_DIR/linux-exploit-suggester.sh" 2>>"$LOG_FILE"; then
@@ -311,7 +308,7 @@ install_payloads() {
     fi
   fi
 
-  # LSE
+
   if [ ! -f "$BIN_DIR/lse.sh" ]; then
     info "Installing lse..."
     if wget -q "https://raw.githubusercontent.com/diego-treitos/linux-smart-enumeration/master/lse.sh" -O "$BIN_DIR/lse.sh" 2>>"$LOG_FILE"; then
@@ -323,7 +320,7 @@ install_payloads() {
     fi
   fi
 
-  # pspy
+
   if [ ! -f "$BIN_DIR/pspy64" ]; then
     info "Installing pspy64..."
     if wget -q "https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy64" -O "$BIN_DIR/pspy64" 2>>"$LOG_FILE"; then
@@ -345,7 +342,7 @@ install_payloads() {
     fi
   fi
 
-  # PowerUp
+
   if [ ! -f "$BIN_DIR/powerup.ps1" ]; then
     info "Installing powerup..."
     if wget -q "https://raw.githubusercontent.com/PowerShellEmpire/PowerTools/master/PowerUp/PowerUp.ps1" -O "$BIN_DIR/powerup.ps1" 2>>"$LOG_FILE"; then
@@ -357,7 +354,7 @@ install_payloads() {
     fi
   fi
 
-  # JAWS
+
   if [ ! -f "$BIN_DIR/jaws-enum.ps1" ]; then
     info "Installing jaws..."
     if wget -q "https://raw.githubusercontent.com/411Hall/JAWS/master/jaws-enum.ps1" -O "$BIN_DIR/jaws-enum.ps1" 2>>"$LOG_FILE"; then
@@ -369,7 +366,7 @@ install_payloads() {
     fi
   fi
 
-  # PrintSpoofer
+
   if [ ! -f "$BIN_DIR/printspoof.exe" ]; then
     info "Installing printspoofer..."
     if wget -q "https://github.com/itm4n/PrintSpoofer/releases/download/v1.0/PrintSpoofer32.exe" -O "$BIN_DIR/printspoof.exe" 2>>"$LOG_FILE"; then
@@ -381,7 +378,7 @@ install_payloads() {
     fi
   fi
 
-  # Nishang Reverse Shell
+
   if [ ! -f "$BIN_DIR/invoke-powershelltcp.ps1" ]; then
     info "Installing nishang-rev..."
     if wget -q "https://raw.githubusercontent.com/samratashok/nishang/master/Shells/Invoke-PowerShellTcp.ps1" -O "$BIN_DIR/invoke-powershelltcp.ps1" 2>>"$LOG_FILE"; then
@@ -393,7 +390,6 @@ install_payloads() {
     fi
   fi
 
-  # PHP Reverse Shell
   if [ ! -f "$BIN_DIR/php-rev-shell.php" ]; then
     info "Installing php-rev-shell..."
     if wget -q "https://raw.githubusercontent.com/pentestmonkey/php-reverse-shell/master/php-reverse-shell.php" -O "$BIN_DIR/php-rev-shell.php" 2>>"$LOG_FILE"; then
@@ -405,7 +401,7 @@ install_payloads() {
     fi
   fi
 
-  # TokenBreaker
+
   if [ ! -f "$BIN_DIR/RsaToHmac.py" ]; then
     info "Installing RsaToHmac.py..."
     if wget -q "https://raw.githubusercontent.com/cyberblackhole/TokenBreaker/master/RsaToHmac.py" -O "$BIN_DIR/RsaToHmac.py" 2>>"$LOG_FILE"; then
@@ -428,20 +424,20 @@ install_payloads() {
       FAILED_TOOLS+=("TheNone.py")
     fi
   fi
-  # TokenBreaker Requirements
+
   "$PYTOOLS_VENV/bin/python" -m pip install -r "https://raw.githubusercontent.com/cyberblackhole/TokenBreaker/master/requirements.txt" >/dev/null 2>>"$LOG_FILE" || true
 
-  # JWT Cracker (Build from source)
+
    if [ ! -s "$BIN_DIR/jwt-cracker" ]; then
      info "Installing jwt-cracker..."
-     # Create temporary build directory
+
      BUILD_DIR=$(mktemp -d)
      if wget -q "https://raw.githubusercontent.com/brendan-rius/c-jwt-cracker/master/Makefile" -O "$BUILD_DIR/Makefile" && \
         wget -q "https://raw.githubusercontent.com/brendan-rius/c-jwt-cracker/master/base64.c" -O "$BUILD_DIR/base64.c" && \
         wget -q "https://raw.githubusercontent.com/brendan-rius/c-jwt-cracker/master/base64.h" -O "$BUILD_DIR/base64.h" && \
         wget -q "https://raw.githubusercontent.com/brendan-rius/c-jwt-cracker/master/main.c" -O "$BUILD_DIR/main.c"; then
        
-       # Detect OpenSSL path
+
        if [ -d "/opt/homebrew/opt/openssl@3" ]; then
          OPENSSL_PATH="/opt/homebrew/opt/openssl@3"
        elif [ -d "/usr/local/opt/openssl@3" ]; then
@@ -451,10 +447,8 @@ install_payloads() {
        fi
  
        if [ -n "$OPENSSL_PATH" ]; then
-         # Build
          if make -C "$BUILD_DIR" OPENSSL="$OPENSSL_PATH/include" OPENSSL_LIB="-L$OPENSSL_PATH/lib" >/dev/null 2>>"$LOG_FILE"; then
-           # Use cat to avoid sandbox mv restrictions
-           # The makefile produces 'jwtcrack' binary
+
            cat "$BUILD_DIR/jwtcrack" > "$BIN_DIR/jwt-cracker"
            chmod +x "$BIN_DIR/jwt-cracker"
            success "Installed jwt-cracker"
@@ -464,7 +458,7 @@ install_payloads() {
            FAILED_TOOLS+=("jwt-cracker")
          fi
        else
-          # Fallback try without specific path (if in env)
+
           if make -C "$BUILD_DIR" >/dev/null 2>>"$LOG_FILE"; then
              cat "$BUILD_DIR/jwtcrack" > "$BIN_DIR/jwt-cracker"
              chmod +x "$BIN_DIR/jwt-cracker"
@@ -481,8 +475,7 @@ install_payloads() {
      fi
      rm -rf "$BUILD_DIR"
   fi
- 
-   # Hash Identifier (Custom script)
+
    if [ ! -f "$BIN_DIR/hash-id.py" ]; then
      info "Installing hash-id.py..."
      if wget -q "https://raw.githubusercontent.com/blackploit/hash-identifier/master/hash-id.py" -O "$BIN_DIR/hash-id.py" 2>>"$LOG_FILE"; then
@@ -495,7 +488,7 @@ install_payloads() {
      fi
   fi
  
-   # LinkFinder
+
    if ! "$PYTOOLS_VENV/bin/pip" show linkfinder >/dev/null 2>>"$LOG_FILE"; then
      info "Installing linkfinder..."
      if "$PYTOOLS_VENV/bin/pip" install "git+https://github.com/GerbenJavado/LinkFinder.git" >/dev/null 2>>"$LOG_FILE"; then
@@ -507,7 +500,7 @@ install_payloads() {
      fi
    fi
    
-   # Ensure LinkFinder wrapper exists and points to venv
+
    LF_SCRIPT=$(find "$PYTOOLS_VENV" -name linkfinder.py 2>/dev/null | head -n 1)
    if [ -n "$LF_SCRIPT" ]; then
      echo '#!/bin/bash' > linkfinder.tmp
@@ -517,7 +510,7 @@ install_payloads() {
      rm linkfinder.tmp
    fi
 
-  # Pentest Scripts
+
   if [ ! -f "$BIN_DIR/basic_scanner.py" ]; then
     info "Installing basic_scanner.py..."
     if wget -q "https://raw.githubusercontent.com/chikko80/Pen-Scripts/master/basic_scanner.py" -O "$BIN_DIR/basic_scanner.py" 2>>"$LOG_FILE"; then
@@ -551,7 +544,7 @@ install_payloads() {
       FAILED_TOOLS+=("string_finder.py")
     fi
   fi
-  # Pentest Scripts Requirements
+
   "$PYTOOLS_VENV/bin/python" -m pip install -r "https://raw.githubusercontent.com/chikko80/Pen-Scripts/master/requirements.txt" >/dev/null 2>>"$LOG_FILE" || true
 }
 
