@@ -11,8 +11,8 @@
 
 1.  **Clone the repository**:
     ```bash
-    git clone https://github.com/yourusername/Toolsformac.git
-    cd Toolsformac
+    git clone https://github.com/zarni99/redmac.git
+    cd redmac
     ```
 
 2.  **Make the script executable**:
